@@ -14,12 +14,15 @@ import javafx.scene.control.TextField;
  * @version Fall 2024
  */
 public class MainWindow {
+
 	@FXML
 	private TextField grade;
 	@FXML
 	private TextField name;
 	@FXML
 	private ListView<Student> students;
+	@FXML
+	private TextField studentGrade;
 
 	@FXML
 	void addStudent(ActionEvent event) {
@@ -57,10 +60,29 @@ public class MainWindow {
 	}
 
 	@FXML
+	void checkGrade(ActionEvent event) {
+		Student student = this.students.getSelectionModel().getSelectedItem();
+		if (student != null) {
+			this.studentGrade.clear();
+			int grade = student.getGrade();
+			String gradeStudent = Integer.toString(grade);
+			this.studentGrade.appendText(gradeStudent);
+		} else {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setContentText("No student selected. Unable to grade.");
+			errorPopup.showAndWait();
+
+		}
+
+	}
+
+	@FXML
 	void initialize() {
-        assert this.grade != null : "fx:id=\"grade\" was not injected: check your FXML file 'MainWindow.fxml'.";
+		assert this.grade != null : "fx:id=\"grade\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.name != null : "fx:id=\"name\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.students != null : "fx:id=\"students\" was not injected: check your FXML file 'MainWindow.fxml'.";
+		assert this.studentGrade != null : "fx:id=\"studentGrade\" was not injected: check your FXML file 'MainWindow.fxml'.";
+
 	}
 
 }
