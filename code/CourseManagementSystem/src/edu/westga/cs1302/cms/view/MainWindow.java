@@ -28,7 +28,7 @@ public class MainWindow {
 	void addStudent(ActionEvent event) {
 		String studentName = this.name.getText();
 		try {
-			int grade = Integer.parseInt(this.grade.getText());
+			double grade = Double.parseDouble(this.grade.getText());
 			Student student = new Student(studentName, grade);
 			this.students.getItems().add(student);
 		} catch (NumberFormatException errorNum) {
@@ -39,7 +39,7 @@ public class MainWindow {
 		} catch (IllegalArgumentException errorObject) {
 			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
 			errorPopup.setContentText(
-					"Unable to create student: " + errorObject.getMessage() + " Please reenter name and try again.");
+					"Unable to create student: " + errorObject.getMessage() + " Please reenter name and grade, then try again.");
 			errorPopup.showAndWait();
 		}
 
@@ -64,8 +64,8 @@ public class MainWindow {
 		Student student = this.students.getSelectionModel().getSelectedItem();
 		if (student != null) {
 			this.studentGrade.clear();
-			int grade = student.getGrade();
-			String gradeStudent = Integer.toString(grade);
+			double grade = student.getGrade();
+			String gradeStudent = Double.toString(grade);
 			this.studentGrade.appendText(gradeStudent);
 		} else {
 			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
