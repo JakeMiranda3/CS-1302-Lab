@@ -6,16 +6,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="300.0" minWidth="289.0" prefHeight="312.0" prefWidth="289.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.cms.view.MainWindow">
+<AnchorPane minHeight="300.0" minWidth="289.0" prefHeight="312.0" prefWidth="314.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.cms.view.MainWindow">
    <children>
-      <Button layoutX="229.0" layoutY="74.0" mnemonicParsing="false" onAction="#removeStudent" text="-" />
-      <Button layoutX="227.0" layoutY="25.0" mnemonicParsing="false" onAction="#addStudent" text="+" />
+      <Button layoutX="240.0" layoutY="74.0" mnemonicParsing="false" onAction="#removeStudent" text="-" />
+      <Button layoutX="238.0" layoutY="25.0" mnemonicParsing="false" onAction="#addStudent" text="+" />
       <TextField fx:id="name" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Name" />
       <Label layoutX="82.0" layoutY="6.0" text="Name" />
       <ListView fx:id="students" layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
       <TextField fx:id="grade" layoutX="14.0" layoutY="74.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Grade" />
       <Label layoutX="82.0" layoutY="54.0" text="Grade" />
-      <Button layoutX="216.0" layoutY="113.0" mnemonicParsing="false" onAction="#checkGrade" text="Grade" />
-      <TextField fx:id="studentGrade" editable="false" layoutX="216.0" layoutY="144.0" prefHeight="25.0" prefWidth="48.0" />
+      <Button layoutX="226.0" layoutY="111.0" mnemonicParsing="false" onAction="#checkGrade" text="Grade" />
+      <TextField fx:id="studentGrade" editable="false" layoutX="226.0" layoutY="144.0" prefHeight="25.0" prefWidth="48.0" />
+      <Label layoutX="219.0" layoutY="182.0" text="Class Average" />
+      <TextField fx:id="studentAverage" editable="false" layoutX="226.0" layoutY="200.0" prefHeight="25.0" prefWidth="48.0" promptText="0.00" />
    </children>
 </AnchorPane>

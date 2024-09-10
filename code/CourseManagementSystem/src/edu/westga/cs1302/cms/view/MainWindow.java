@@ -23,6 +23,8 @@ public class MainWindow {
 	private ListView<Student> students;
 	@FXML
 	private TextField studentGrade;
+	@FXML
+	private TextField studentAverage;
 
 	@FXML
 	void addStudent(ActionEvent event) {
@@ -31,6 +33,8 @@ public class MainWindow {
 			double grade = Double.parseDouble(this.grade.getText());
 			Student student = new Student(studentName, grade);
 			this.students.getItems().add(student);
+			String average = this.getAverage();
+			this.studentAverage.appendText(average);
 		} catch (NumberFormatException errorNum) {
 			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
 			errorPopup.setContentText(
@@ -38,8 +42,8 @@ public class MainWindow {
 			errorPopup.showAndWait();
 		} catch (IllegalArgumentException errorObject) {
 			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
-			errorPopup.setContentText(
-					"Unable to create student: " + errorObject.getMessage() + " Please reenter name and grade, then try again.");
+			errorPopup.setContentText("Unable to create student: " + errorObject.getMessage()
+					+ " Please reenter name and grade, then try again.");
 			errorPopup.showAndWait();
 		}
 
@@ -50,6 +54,8 @@ public class MainWindow {
 		Student student = this.students.getSelectionModel().getSelectedItem();
 		if (student != null) {
 			this.students.getItems().remove(student);
+			String average = this.getAverage();
+			this.studentAverage.appendText(average);
 		} else {
 			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
 			errorPopup.setContentText("No student selected. Unable to remove.");
@@ -76,12 +82,27 @@ public class MainWindow {
 
 	}
 
+	private String getAverage() {
+		this.studentAverage.clear();
+		double totalGrade = 0.00;
+		double averageGrade = 0.00;
+		for (Student student : this.students.getItems()) {
+			totalGrade += student.getGrade();
+		}
+		averageGrade = (totalGrade / this.students.getItems().size());
+		averageGrade = Math.round(averageGrade * 100.00) / 100.00;
+		return Double.toString(averageGrade);
+	}
+
 	@FXML
 	void initialize() {
 		assert this.grade != null : "fx:id=\"grade\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.name != null : "fx:id=\"name\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.students != null : "fx:id=\"students\" was not injected: check your FXML file 'MainWindow.fxml'.";
-		assert this.studentGrade != null : "fx:id=\"studentGrade\" was not injected: check your FXML file 'MainWindow.fxml'.";
+		assert this.studentGrade != null
+				: "fx:id=\"studentGrade\" was not injected: check your FXML file 'MainWindow.fxml'.";
+		assert this.studentAverage != null
+				: "fx:id=\"studentAverage\" was not injected: check your FXML file 'MainWindow.fxml'.";
 
 	}
 

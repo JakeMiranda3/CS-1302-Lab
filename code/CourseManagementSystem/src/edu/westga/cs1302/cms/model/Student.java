@@ -28,7 +28,7 @@ public class Student {
 		}
 		if (name.length() < 3) {
 			throw new IllegalArgumentException("Name must have at least 3 characters.");
-		} 
+		}
 		if (grade < 0) {
 			throw new IllegalArgumentException("Grade cant be less than 0.");
 		}
