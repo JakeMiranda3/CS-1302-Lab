@@ -1,5 +1,6 @@
 package edu.westga.cs1302.cms.view;
 
+import edu.westga.cs1302.cms.model.AverageCalculator;
 import edu.westga.cs1302.cms.model.Student;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,8 +34,8 @@ public class MainWindow {
 			double grade = Double.parseDouble(this.grade.getText());
 			Student student = new Student(studentName, grade);
 			this.students.getItems().add(student);
-			String average = this.getAverage();
-			this.studentAverage.appendText(average);
+			this.studentAverage.clear();
+			this.studentAverage.appendText(AverageCalculator.calculateAverage(this.students));
 		} catch (NumberFormatException errorNum) {
 			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
 			errorPopup.setContentText(
@@ -54,8 +55,8 @@ public class MainWindow {
 		Student student = this.students.getSelectionModel().getSelectedItem();
 		if (student != null) {
 			this.students.getItems().remove(student);
-			String average = this.getAverage();
-			this.studentAverage.appendText(average);
+			this.studentAverage.clear();
+			this.studentAverage.appendText(AverageCalculator.calculateAverage(this.students));
 		} else {
 			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
 			errorPopup.setContentText("No student selected. Unable to remove.");
@@ -80,18 +81,6 @@ public class MainWindow {
 
 		}
 
-	}
-
-	private String getAverage() {
-		this.studentAverage.clear();
-		double totalGrade = 0.00;
-		double averageGrade = 0.00;
-		for (Student student : this.students.getItems()) {
-			totalGrade += student.getGrade();
-		}
-		averageGrade = (totalGrade / this.students.getItems().size());
-		averageGrade = Math.round(averageGrade * 100.00) / 100.00;
-		return Double.toString(averageGrade);
 	}
 
 	@FXML
