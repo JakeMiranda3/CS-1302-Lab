@@ -1,5 +1,7 @@
 package edu.westga.cs1302.cms.view;
 
+import java.util.ArrayList;
+
 import edu.westga.cs1302.cms.model.AverageCalculator;
 import edu.westga.cs1302.cms.model.Student;
 import javafx.event.ActionEvent;
@@ -35,7 +37,8 @@ public class MainWindow {
 			Student student = new Student(studentName, grade);
 			this.students.getItems().add(student);
 			this.studentAverage.clear();
-			this.studentAverage.appendText(AverageCalculator.calculateAverage(this.students));
+			ArrayList<Student> studentsInfo = new ArrayList<Student>(this.students.getItems());
+			this.studentAverage.appendText(AverageCalculator.calculateAverage(studentsInfo));
 		} catch (NumberFormatException errorNum) {
 			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
 			errorPopup.setContentText(
@@ -56,7 +59,8 @@ public class MainWindow {
 		if (student != null) {
 			this.students.getItems().remove(student);
 			this.studentAverage.clear();
-			this.studentAverage.appendText(AverageCalculator.calculateAverage(this.students));
+			ArrayList<Student> studentsInfo = new ArrayList<Student>(this.students.getItems());
+			this.studentAverage.appendText(AverageCalculator.calculateAverage(studentsInfo));
 		} else {
 			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
 			errorPopup.setContentText("No student selected. Unable to remove.");
