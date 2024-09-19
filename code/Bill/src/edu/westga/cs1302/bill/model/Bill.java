@@ -41,8 +41,9 @@ public class Bill {
 		this.items[this.size] = item;
 		this.size++;
 	}
-	
-	/** Return the number of items in the bill
+
+	/**
+	 * Return the number of items in the bill
 	 * 
 	 * @return the number of items in the bill
 	 */
@@ -58,47 +59,5 @@ public class Bill {
 	public BillItem[] getItems() {
 		return this.items;
 	}
-//
-//	/**
-//	 * Return the subtotal for the bill
-//	 * 
-//	 * @return the subtotal for the bill
-//	 */
-//	public double getSubTotal() {
-//		double subTotal = 0.0;
-//		for (BillItem item : this.items) {
-//			if (item != null) {
-//				subTotal += item.getAmount();
-//			}
-//		}
-//		return subTotal;
-//	}
-
-//	/**
-//	 * Return the tax for the bill
-//	 * 
-//	 * @return the tax for the bill
-//	 */
-//	public double getTax() {
-//		return this.getSubTotal() * 0.1;
-//	}
-
-//	/**
-//	 * Return the tip for the bill
-//	 * 
-//	 * @return the tip for the bill
-//	 */
-//	public double getTip() {
-//		return this.getSubTotal() * 0.2;
-//	}
-
-//	/**
-//	 * Return the total for the bill
-//	 * 
-//	 * @return the total for the bill
-//	 */
-//	public double getTotal() {
-//		return this.getSubTotal() + this.getTax() + this.getTip();
-//	}
 
 }

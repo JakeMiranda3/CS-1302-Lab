@@ -12,22 +12,21 @@ class TestGetText {
 
 	@Test
 	void testNullBill() {
-		assertThrows(IllegalArgumentException.class, ()->{BillTextifier.getText(null);});
+		assertThrows(IllegalArgumentException.class, () -> {
+			BillTextifier.getText(null);
+		});
 	}
 
 	@Test
 	void testBillWithNoItems() {
 		Bill bill = new Bill();
-		
+
 		String result = BillTextifier.getText(bill);
-		
-		String expected = "ITEMS" + System.lineSeparator()
-				+ System.lineSeparator()
-				+ "SUBTOTAL - $0.00" + System.lineSeparator()
-				+ "TAX - $0.00" + System.lineSeparator()
-				+ "TIP - $0.00" + System.lineSeparator()
-				+ "TOTAL - $0.00";
-		
+
+		String expected = "ITEMS" + System.lineSeparator() + System.lineSeparator() + "SUBTOTAL - $0.00"
+				+ System.lineSeparator() + "TAX - $0.00" + System.lineSeparator() + "TIP - $0.00"
+				+ System.lineSeparator() + "TOTAL - $0.00";
+
 		assertEquals(expected, result);
 	}
 
@@ -36,18 +35,13 @@ class TestGetText {
 		Bill bill = new Bill();
 		BillItem item1 = new BillItem("1", 5);
 		bill.addItem(item1);
-		
+
 		String result = BillTextifier.getText(bill);
 
-		
-		String expected = "ITEMS" + System.lineSeparator()
-				+ "1 - $5.00" + System.lineSeparator()
-				+ System.lineSeparator()
-				+ "SUBTOTAL - $5.00" + System.lineSeparator()
-				+ "TAX - $0.50" + System.lineSeparator()
-				+ "TIP - $1.00" + System.lineSeparator()
-				+ "TOTAL - $6.50";
-		
+		String expected = "ITEMS" + System.lineSeparator() + "1 - $5.00" + System.lineSeparator()
+				+ System.lineSeparator() + "SUBTOTAL - $5.00" + System.lineSeparator() + "TAX - $0.50"
+				+ System.lineSeparator() + "TIP - $1.00" + System.lineSeparator() + "TOTAL - $6.50";
+
 		assertEquals(expected, result);
 	}
 
@@ -58,18 +52,13 @@ class TestGetText {
 		bill.addItem(item1);
 		BillItem item2 = new BillItem("2", 6);
 		bill.addItem(item2);
-		
+
 		String result = BillTextifier.getText(bill);
 
-		String expected = "ITEMS" + System.lineSeparator()
-				+ "1 - $5.00" + System.lineSeparator()
-				+ "2 - $6.00" + System.lineSeparator()
-				+ System.lineSeparator()
-				+ "SUBTOTAL - $11.00" + System.lineSeparator()
-				+ "TAX - $1.10" + System.lineSeparator()
-				+ "TIP - $2.20" + System.lineSeparator()
-				+ "TOTAL - $14.30";
-		
+		String expected = "ITEMS" + System.lineSeparator() + "1 - $5.00" + System.lineSeparator() + "2 - $6.00"
+				+ System.lineSeparator() + System.lineSeparator() + "SUBTOTAL - $11.00" + System.lineSeparator()
+				+ "TAX - $1.10" + System.lineSeparator() + "TIP - $2.20" + System.lineSeparator() + "TOTAL - $14.30";
+
 		assertEquals(expected, result);
 	}
 }
