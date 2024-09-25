@@ -21,6 +21,8 @@
       <Button layoutX="167.0" layoutY="158.0" mnemonicParsing="false" onAction="#setQuantity" text="Set Quantity" />
       <Button layoutX="103.0" layoutY="194.0" mnemonicParsing="false" onAction="#increaseQuantity" text="Increase +1" />
       <Button layoutX="13.0" layoutY="194.0" mnemonicParsing="false" onAction="#decreaseQuantity" text="Decrease -1" />
-      <Button layoutX="210.0" layoutY="247.0" mnemonicParsing="false" onAction="#removeFood" text="Remove Food" />
+      <Button layoutX="210.0" layoutY="247.0" mnemonicParsing="false" onAction="#removeFood" prefHeight="25.0" prefWidth="90.0" text="Remove Food" />
+      <TextField fx:id="count" editable="false" layoutX="209.0" layoutY="337.0" prefHeight="25.0" prefWidth="86.0" />
+      <Button layoutX="209.0" layoutY="302.0" mnemonicParsing="false" onAction="#countPantry" text="Count Pantry" />
    </children>
 </AnchorPane>
