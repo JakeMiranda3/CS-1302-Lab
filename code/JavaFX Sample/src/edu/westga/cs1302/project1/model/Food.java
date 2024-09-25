@@ -19,6 +19,7 @@ public class Food {
 	 * 
 	 * @param name the name of the food
 	 * @param type the type of food
+	 * @throws IllegalArgumentException when precondition is violated
 	 */
 	public Food(String name, String type) throws IllegalArgumentException {
 		if (name == null) {
