@@ -47,16 +47,60 @@ public class MainWindow {
 
 	@FXML
 	void setQuantity(ActionEvent event) {
+		Food food = this.pantryList.getSelectionModel().getSelectedItem();
+		String foodQuantity = this.quantity.getText();
+		if (food != null) {
+			try {
+				food.setQuantity(Integer.parseInt(foodQuantity));
+				this.pantryList.refresh();
+			} catch (IllegalArgumentException errorObject) {
+				Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+				errorPopup.setContentText("Unable to set quantity: " + errorObject.getMessage()
+						+ " Please enter a non-negative number and try again.");
+				errorPopup.showAndWait();
+			}
+		} else {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setContentText("No food selected. Unable to set quantity.");
+			errorPopup.showAndWait();
+
+		}
 
 	}
 
 	@FXML
 	void decreaseQuantity(ActionEvent event) {
+		Food food = this.pantryList.getSelectionModel().getSelectedItem();
+		if (food != null) {
+			try {
+				food.decreaseQuantity();
+				this.pantryList.refresh();
+			} catch (IllegalArgumentException errorObject) {
+				Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+				errorPopup.setContentText("Unable to decrease quantity: " + errorObject.getMessage());
+				errorPopup.showAndWait();
+			}
+		} else {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setContentText("No food selected. Unable to decrease quantity.");
+			errorPopup.showAndWait();
+
+		}
 
 	}
 
 	@FXML
 	void increaseQuantity(ActionEvent event) {
+		Food food = this.pantryList.getSelectionModel().getSelectedItem();
+		if (food != null) {
+			food.increaseQuantity();
+			this.pantryList.refresh();
+		} else {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setContentText("No food selected. Unable to increase quantity.");
+			errorPopup.showAndWait();
+
+		}
 
 	}
 

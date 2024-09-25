@@ -19,7 +19,7 @@
       <Label layoutX="14.0" layoutY="138.0" text="Quantity" />
       <TextField fx:id="quantity" layoutX="14.0" layoutY="158.0" promptText="Enter quantity of food" />
       <Button layoutX="167.0" layoutY="158.0" mnemonicParsing="false" onAction="#setQuantity" text="Set Quantity" />
-      <Button layoutX="103.0" layoutY="194.0" mnemonicParsing="false" onAction="#increaseQuantity" text="Increase" />
-      <Button layoutX="13.0" layoutY="194.0" mnemonicParsing="false" onAction="#decreaseQuantity" text="Decrease" />
+      <Button layoutX="103.0" layoutY="194.0" mnemonicParsing="false" onAction="#increaseQuantity" text="Increase +1" />
+      <Button layoutX="13.0" layoutY="194.0" mnemonicParsing="false" onAction="#decreaseQuantity" text="Decrease -1" />
    </children>
 </AnchorPane>
