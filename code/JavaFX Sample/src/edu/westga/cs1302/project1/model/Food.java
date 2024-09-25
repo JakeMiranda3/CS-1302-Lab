@@ -66,6 +66,42 @@ public class Food {
 		return this.quantity;
 	}
 
+	/**
+	 * Sets the quantity of food passed through the parameter
+	 * 
+	 * @precondition num >= 0
+	 * 
+	 * @param num The number of food
+	 * @throws IllegalArgumentException when precondition is violated
+	 */
+	public void setQuantity(int num) throws IllegalArgumentException {
+		if (num < 0) {
+			throw new IllegalArgumentException("Quantity can't be less than zero.");
+		}
+		this.quantity = num;
+	}
+
+	/**
+	 * Increases the quantity of food by one.
+	 */
+	public void increaseQuantity() {
+		this.quantity++;
+	}
+
+	/**
+	 * Decreases the quantity of food by one
+	 * 
+	 * @precondition this.quantity != 0
+	 * 
+	 * @throws IllegalArgumentException when precondition is violated
+	 */
+	public void decreaseQuantity() throws IllegalArgumentException {
+		if (this.quantity == 0) {
+			throw new IllegalArgumentException("Quantity can't be decreased to less than zero.");
+		}
+		this.quantity--;
+	}
+
 	@Override
 	public String toString() {
 		return this.name + " - " + this.quantity;
