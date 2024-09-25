@@ -26,6 +26,9 @@ public class MainWindow {
 	private ListView<Food> pantryList;
 
 	@FXML
+	private TextField quantity;
+
+	@FXML
 	void addFood(ActionEvent event) {
 		String foodName = this.name.getText();
 		String foodType = this.type.getValue();
@@ -43,12 +46,28 @@ public class MainWindow {
 	}
 
 	@FXML
+	void setQuantity(ActionEvent event) {
+
+	}
+
+	@FXML
+	void decreaseQuantity(ActionEvent event) {
+
+	}
+
+	@FXML
+	void increaseQuantity(ActionEvent event) {
+
+	}
+
+	@FXML
 	void initialize() {
 		this.type.getItems().addAll("Vegetable", "Meat", "Bread", "Fruit", "Dessert", "Ingredient");
 		assert this.type != null : "fx:id=\"foodType\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.name != null : "fx:id=\"name\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.pantryList != null
 				: "fx:id=\"pantryList\" was not injected: check your FXML file 'MainWindow.fxml'.";
+		assert this.quantity != null : "fx:id=\"quantity\" was not injected: check your FXML file 'MainWindow.fxml'.";
 
 	}
 }
