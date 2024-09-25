@@ -17,9 +17,25 @@ class TestConstructor {
 	}
 
 	@Test
+	void testWhenFoodNameIsBlank() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			new Food(" ", "Vegatable");
+
+		});
+	}
+
+	@Test
 	void testWhenFoodTypeIsNull() {
 		assertThrows(IllegalArgumentException.class, () -> {
 			new Food("Steak", null);
+
+		});
+	}
+
+	@Test
+	void testWhenFoodTypeIsBlank() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			new Food(" ", "Vegatable");
 
 		});
 	}

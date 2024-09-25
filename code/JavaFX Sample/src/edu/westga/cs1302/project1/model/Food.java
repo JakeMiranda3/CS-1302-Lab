@@ -25,8 +25,14 @@ public class Food {
 		if (name == null) {
 			throw new IllegalArgumentException("Name must be provided.");
 		}
+		if (name.isBlank()) {
+			throw new IllegalArgumentException("Name can't be blank.");
+		}
 		if (type == null) {
 			throw new IllegalArgumentException("Type must be provided.");
+		}
+		if (type.isBlank()) {
+			throw new IllegalArgumentException("Type can't be blank.");
 		}
 		this.name = name;
 		this.type = type;
@@ -50,15 +56,16 @@ public class Food {
 	public String getType() {
 		return this.type;
 	}
-	
+
 	/**
 	 * Returns the quantity of food
+	 * 
 	 * @return the quantity of food
 	 */
 	public int getQuantity() {
 		return this.quantity;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.name + " - " + this.quantity;
