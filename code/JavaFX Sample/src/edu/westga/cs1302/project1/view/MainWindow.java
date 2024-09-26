@@ -1,5 +1,8 @@
 package edu.westga.cs1302.project1.view;
 
+import java.util.List;
+
+import edu.westga.cs1302.project1.model.CountPantry;
 import edu.westga.cs1302.project1.model.Food;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -119,6 +122,18 @@ public class MainWindow {
 
 	@FXML
 	void countPantry(ActionEvent event) {
+		List<Food> foods = this.pantryList.getItems();
+		if (foods.size() != 0) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setHeaderText("Quantity of Food in Pantry");
+			alert.setContentText("Quantity: " + Integer.toString(CountPantry.countPantryFood(foods)));
+			alert.showAndWait();
+
+		} else {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setContentText("Pantry is empty. Please add food and try again.");
+			errorPopup.showAndWait();
+		}
 
 	}
 
