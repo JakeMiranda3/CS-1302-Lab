@@ -35,7 +35,7 @@ class TestConstructor {
 	@Test
 	void testWhenFoodTypeIsBlank() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Food(" ", "Vegatable");
+			new Food("Steak ", " ");
 
 		});
 	}
