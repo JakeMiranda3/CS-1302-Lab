@@ -29,9 +29,6 @@ public class MainWindow {
 	private TextField quantity;
 
 	@FXML
-	private TextField count;
-
-	@FXML
 	void addFood(ActionEvent event) {
 		String foodName = this.name.getText();
 		String foodType = this.type.getValue();
@@ -133,7 +130,6 @@ public class MainWindow {
 		assert this.pantryList != null
 				: "fx:id=\"pantryList\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.quantity != null : "fx:id=\"quantity\" was not injected: check your FXML file 'MainWindow.fxml'.";
-		assert this.count != null : "fx:id=\"count\" was not injected: check your FXML file 'MainWindow.fxml'.";
 
 	}
 }

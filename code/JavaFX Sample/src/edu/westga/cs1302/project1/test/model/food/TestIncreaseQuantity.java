@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.project1.model.Food;
 
-class IncreaseQuantity {
+class TestIncreaseQuantity {
 
 	@Test
 	void testWhenIncreaseQuantityIsCalledOnce() {

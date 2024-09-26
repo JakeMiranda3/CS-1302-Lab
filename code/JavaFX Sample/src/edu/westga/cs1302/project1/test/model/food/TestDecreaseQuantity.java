@@ -6,33 +6,35 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.project1.model.Food;
 
-class SetQuantity {
+class TestDecreaseQuantity {
 
 	@Test
-	void testWhenSetQuantityIsLessThanZero() {
+	void testWhenQuantityIsZero() {
 		Food food = new Food("Steak", "Meat");
 		assertThrows(IllegalArgumentException.class, () -> {
-			food.setQuantity(-1);
-
+			food.decreaseQuantity();
 		});
 	}
 
 	@Test
-	void testWhenSetQuantityIsZero() {
+	void testWhenDecreaseQuantityIsCalledOnce() {
 		Food food = new Food("Steak", "Meat");
-		food.setQuantity(0);
+		food.setQuantity(5);
+		food.decreaseQuantity();
 		assertEquals("Steak", food.getName(), "Checks the name of the food");
 		assertEquals("Meat", food.getType(), "Checks the type of food");
-		assertEquals(0, food.getQuantity(), "Checks the quantity of food");
+		assertEquals(4, food.getQuantity(), "Checks the quantity of food");
 	}
 
 	@Test
-	void testWhenSetQuantityIsOne() {
+	void testWhenDecreaseQuantityIsCalledMoreThanOnce() {
 		Food food = new Food("Steak", "Meat");
-		food.setQuantity(1);
+		food.setQuantity(5);
+		food.decreaseQuantity();
+		food.decreaseQuantity();
 		assertEquals("Steak", food.getName(), "Checks the name of the food");
 		assertEquals("Meat", food.getType(), "Checks the type of food");
-		assertEquals(1, food.getQuantity(), "Checks the quantity of food");
+		assertEquals(3, food.getQuantity(), "Checks the quantity of food");
 	}
 
 }

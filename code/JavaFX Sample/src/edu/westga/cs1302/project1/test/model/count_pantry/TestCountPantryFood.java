@@ -1,4 +1,4 @@
-package edu.westga.cs1302.project1.test.model.CountPantry;
+package edu.westga.cs1302.project1.test.model.count_pantry;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs1302.project1.model.CountPantry;
 import edu.westga.cs1302.project1.model.Food;
 
-class CountPantryFood {
+class TestCountPantryFood {
 
 	@Test
 	void testCountPantryWithNullItems() {
