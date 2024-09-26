@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 /**
  * Codebehind for the Main Window of the application.
  * 
- * @author CS 1302
+ * @author Jake Miranda
  * @version Fall 2024
  */
 public class MainWindow {
@@ -56,6 +56,7 @@ public class MainWindow {
 			try {
 				food.setQuantity(Integer.parseInt(foodQuantity));
 				this.pantryList.refresh();
+				this.quantity.clear();
 			} catch (IllegalArgumentException errorObject) {
 				Alert errorPopup = new Alert(Alert.AlertType.ERROR);
 				errorPopup.setContentText("Unable to set quantity: " + errorObject.getMessage()
