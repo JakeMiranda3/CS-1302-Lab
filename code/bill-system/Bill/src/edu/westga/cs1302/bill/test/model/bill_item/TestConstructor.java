@@ -10,22 +10,23 @@ class TestConstructor {
 
 	@Test
 	void testNullName() {
-		assertThrows(IllegalArgumentException.class, () -> {
-			new BillItem(null, 5);
-		});
+		assertThrows(IllegalArgumentException.class, ()->{new BillItem(null, 5);});
 	}
 
 	@Test
-	void testAmountTooLow() {
-		assertThrows(IllegalArgumentException.class, () -> {
-			new BillItem("abc", 0);
-		});
+	void testEmptyName() {
+		assertThrows(IllegalArgumentException.class, ()->{new BillItem("", 5);});
 	}
-
+	
+	@Test
+	void testAmountTooLow() {
+		assertThrows(IllegalArgumentException.class, ()->{new BillItem("abc", 0.009);});
+	}
+	
 	@Test
 	void testValidNameAndAmount() {
 		BillItem result = new BillItem("a", 1);
-
+		
 		assertEquals("a", result.getName(), "checking name of the item");
 		assertEquals(1, result.getAmount(), "checking amount for the item");
 	}
