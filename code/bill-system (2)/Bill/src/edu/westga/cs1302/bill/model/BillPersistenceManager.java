@@ -57,26 +57,28 @@ public class BillPersistenceManager {
 		Bill bill = new Bill();
 		File inputFile = new File(DATA_FILE);
 		try (Scanner reader = new Scanner(inputFile)) {
-			bill.setServerName(reader.nextLine());
-			for (int lineNumber = 2; reader.hasNextLine(); lineNumber++) {
-				String baseLine = reader.nextLine();
-				String strippedLine = baseLine.strip();
-				String[] parts = strippedLine.split(",");
-				try {
-					String name = parts[0];
-					double amount = Double.parseDouble(parts[1]);
-					BillItem nextItem = new BillItem(name, amount);
-					bill.addItem(nextItem);
-				} catch (NumberFormatException numError) {
-					throw new IOException(
-							"Unable to read amount (was not a valid int) on line " + lineNumber + " : " + strippedLine);
+			if (reader.hasNextLine()) {
+				bill.setServerName(reader.nextLine());
+				for (int lineNumber = 2; reader.hasNextLine(); lineNumber++) {
+					String baseLine = reader.nextLine();
+					String strippedLine = baseLine.strip();
+					String[] parts = strippedLine.split(",");
+					try {
+						String name = parts[0];
+						double amount = Double.parseDouble(parts[1]);
+						BillItem nextItem = new BillItem(name, amount);
+						bill.addItem(nextItem);
+					} catch (NumberFormatException numError) {
+						throw new IOException("Unable to read amount (was not a valid int) on line " + lineNumber
+								+ " : " + strippedLine);
 
-				} catch (IllegalArgumentException billItemDataError) {
-					throw new IOException(
-							"Unable to create billItem, bad name/amount " + lineNumber + " : " + strippedLine);
-				} catch (IndexOutOfBoundsException billItemDataError) {
-					throw new IOException(
-							"Missing either name and/or amount on line " + lineNumber + " : " + strippedLine);
+					} catch (IllegalArgumentException billItemDataError) {
+						throw new IOException(
+								"Unable to create billItem, bad name/amount " + lineNumber + " : " + strippedLine);
+					} catch (IndexOutOfBoundsException billItemDataError) {
+						throw new IOException(
+								"Missing either name and/or amount on line " + lineNumber + " : " + strippedLine);
+					}
 				}
 			}
 		}

@@ -36,9 +36,12 @@ public class BillTextifier {
 		}
 
 		text += System.lineSeparator();
-		text += "SUBTOTAL - " + BillTextifier.formatAsCurrency(BillCalculator.getSubTotal(bill.getItems())) + System.lineSeparator();
-		text += "TAX - " + BillTextifier.formatAsCurrency(BillCalculator.getTax(bill.getItems())) + System.lineSeparator();
-		text += "TIP - " + BillTextifier.formatAsCurrency(BillCalculator.getTip(bill.getItems())) + System.lineSeparator();
+		text += "SUBTOTAL - " + BillTextifier.formatAsCurrency(BillCalculator.getSubTotal(bill.getItems()))
+				+ System.lineSeparator();
+		text += "TAX - " + BillTextifier.formatAsCurrency(BillCalculator.getTax(bill.getItems()))
+				+ System.lineSeparator();
+		text += "TIP - " + BillTextifier.formatAsCurrency(BillCalculator.getTip(bill.getItems()))
+				+ System.lineSeparator();
 		text += "TOTAL - " + BillTextifier.formatAsCurrency(BillCalculator.getTotal(bill.getItems()));
 
 		return text;
