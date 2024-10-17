@@ -1,0 +1,435 @@
+commit bf77635e3a8bd19bfee21885cf81ad7a8ef94f65
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Oct 16 20:12:30 2024 -0400
+
+    Sorting Bill Items by Cost in MainWindow
+    
+    1. Added a combo box to the gui to choose between ascending and descending.
+    A. In the initialize I set the values to be acsending and descending so the user can choose.
+    2. Added a change order method in mainwindow to sort and update receipt.
+    A. I noticed my sort wasn't working so I had to add a sort method in the Bill class.
+    B. Then in the MainWindow I implemented this change to sort the values and then update the receipt.
+
+commit 32ac206f156dd4d36dbae93eb7093d9fe55ca622
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Tue Oct 15 23:43:59 2024 -0400
+
+    Sorting Bill Items by Cost Implementation
+    
+    1. Created a new BillAscendingCostComparator class to sort the bill in ascending order based on the cost of bill items.
+    2. Created a new BillDescendingCostComparator class to sort the bill in descending order based on the cost of the bill items.
+
+commit 43991ba54a962459f61cb478b103cb8ea0d06b4f
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Tue Oct 15 23:06:35 2024 -0400
+
+    Implementing Multiple Formats in MainWindow
+    
+    1. Added a ComboBox to the gui
+    A. Did this so the user can choose to save the bill in either csv or tsv formats.
+    2. Changed the savaBillData to get the value of the combo box and save it in that format.
+    3. Updated the Initialize
+    A. added the CSV and TSV to the combo box to be able to choose between the two.
+    B. Also implemented it to load the bill data from either format depending on what is saved
+
+commit f0ee8ba46f1272d0e2af4c6df15b13ad970067d1
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Oct 10 16:11:56 2024 -0400
+
+    Implementing Multiple Formats
+    
+    1. Made a abstract class
+    A. stripped down save and load
+    2. Made a CSVBillPersistenceManager class
+    A. Extends to Abstract class to be able to override the save and load methods.
+    B. Ensured its comma seperated.
+    C. Added a toString to return "CSV" so it can say which type it is using.
+    3. Made a TSVBillPersistenceManager
+    A. Extends to Abstract class to be able to override the save and load methods.
+    B. Changed the save and load methods from CSV to TSV, to ensure its tab seperated.
+    C. Added a toString to return "TSV" so it can say which type it is using.
+
+commit 4b56af418014d2e9bd3a499c242068d7a2ac317f
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Oct 10 15:28:13 2024 -0400
+
+    Added Lab 6 to the Repo
+    
+    1. Downloaded and added Lab 6 to the repository
+
+commit bce5b824c0f97617611c9eba51f6d8047173efa4
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Sun Oct 6 20:33:26 2024 -0400
+
+    Testing Load Bill Data
+    
+    1. Implemented the test cases to ensure the method loadBillData is working.
+    A. Upon adding testing I enountered where my method could go wrong so I added a if statement,
+     in my loadBillData method to make sure reader has next line before doing anything else inside the try block.
+    2. I checked for 5 conditions: empty file, one bill item in file, multiple bill items in file, one bill item in file with invalid amount, and one bill item in file with invalid name.
+
+commit 260347805ba91b1be2b4373abe197e29bfe9c25b
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Sun Oct 6 19:24:14 2024 -0400
+
+    Implementation of Load Bill Data
+    
+    1. Implemented the method loadBillData in the BillPersistenceManager class.
+    A. I did this by using a scanner to read through the file.
+    B. In the try block I first set the server name by using the first line of the file.
+    C. Then inside the for loop I started the lineNumber at 2 as the first line was already read.
+    D. While inside the for loop I get the nextLine and strip and split the string into two parts.
+    E. The two parts are the name and the amount of the item.
+    2. Added and Implemented a button to load the bill data in the MainWindow.
+    A. In the loadBillData method in the MainWindow I used a try block to catch the FileNotFoundException and IOException
+
+commit d43469626b3616f8b8242b6fdb3d5c08aa5eeb20
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Sun Oct 6 17:57:02 2024 -0400
+
+    Testing Save Bill Data
+    
+    1. Implemented test cases to ensure the method saveBillData is working.
+    2. I checked for 5 conditions: null bill, no items in bill, server name in bill, one item in bill, and multiple items in bill.
+
+commit 3e215482fc4ba9c38f2f7cb7344e1a1691913010
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Sun Oct 6 17:18:14 2024 -0400
+
+    Implementation of Sava Bill Data
+    
+    1. In the Bill Persistence Manager class I implemented the functionality of the saveBillData method.
+    A. Checked for null and then implemented a try block.
+    B. In the try block I have a for each loop to go through and write each bill item name and amount seperated by a comma.
+    2. Implemented the saveBillData in the MainWindow.
+    A. Did a try block for saving the bill and a catch block to catch an IOException and alert the user with a show and wait if it cant save data to file.
+
+commit d30bf63fce3f2ec3354cd0fb2fc7ed3cc6625500
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Sun Oct 6 16:39:23 2024 -0400
+
+    Added the Fixed Lab 5 to Repo
+    
+    1. When I looked into my lab 5 I was missing classes and the whole file looked wrong.
+    2. So I downloaded it again added the fixed one to the repo.
+
+commit 969cccb3fb185a30211f475cebdc4199b3ab6d44
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Tue Oct 1 14:00:41 2024 -0400
+
+    Added Lab 5 to the Repo
+    
+    1. Deleted the original bill file using git rm, and then moved the new bill folder to the repo.
+
+commit 64896bec374f7990e24c1d1ff62dcd4a23c593a0
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 21:24:59 2024 -0400
+
+    Added log.txt to Project
+    
+    1. Generated a file named log.txt containing a copy of my commit history.
+    2. Added that file containing my commit history to my project.
+
+commit 43a6d9242b489560b8fc78e8d61bb7db649bf390
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 21:04:26 2024 -0400
+
+    Connect Business Logic and UI to Update Quantity
+    
+    1. Implemented the method in the MainWindow class for displaying the count of food in the pantry to display a popup window of sum quantity of all food in pantry.
+    2. In this method I ensured that if the list was empty a error pop up would show and wait to the user displaying the error.
+    3. However, If the list contained food It would show and wait an information alert box displaying the quantity of food in the pantry.
+
+commit 83a140e33d0f3a5c53e9b429039ac1deb608a450
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 20:17:57 2024 -0400
+
+    Fixed UI and UnitTesting Names
+    
+    1. After rereading the subtask C instructions I noticed I didnt need the textfield to display the pantry quantity,
+            so I deleted it and updated my MainWindow to support the fix.
+    2. Updated package and class names of the Unit Test to follow correct coding practice.
+
+commit ae75a66d67fe4da1c5f31ba98d5dfae2f0be7632
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 20:09:23 2024 -0400
+
+    Business Logic for Counting Pantry
+    
+    1. Created a utility class called CountPantry and added a static method in their to count pantry food quantity.
+    2. In that static method I have it pass through a list of Food and check for null and size equaling zero to ensure the list exist and has values.
+    3. I then created a for each loop to interate through the list and count the quantity of food.
+    4. I then implemented test cases to ensure the static method works properly and checks the preconditions.
+
+commit 7d49d7b9f2b8c924c1d2210122c479a58ebbcf9c
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 19:23:37 2024 -0400
+
+    Implementing UI for Counting Pantry
+    
+    1. Updated the MainWindow to support viewing the count of items in the pantry.
+    2. I added a textfield to dispaly the items and made that textfield uneditable.
+    3. I also added a button to press to count the number of items in the pantry.
+
+commit 1880be1e0a922c8292da5f9f838649194d2c7aa2
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 18:59:43 2024 -0400
+
+    Implement UI for Removing Food
+    
+    1. Implemented the method in MainWindow associated with removing food from the pantry.
+    2. Also implemented a show and wait error popup if the user doesnt select a food to remove.
+
+commit 52a8a5d965b95431961e187439ee5809cd798b7f
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 18:54:11 2024 -0400
+
+    UI for Removing Food
+    
+    1. Updated the MainWindow to support remove selected food.
+    2. I did this by adding a button component to the gui and an associated method in the MainWindow class.
+
+commit 404e94733e99e5ba9b4e7588312c5f1ce96769f3
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 17:52:43 2024 -0400
+
+    Connect Business Logic and UI to Update Quantity
+    
+    1. Implemented methods in the Mainwindow class for setting, incrementing, and decrementing the quantity.
+    2. Setting the quantity should read the quantity from the textfield and then set the quantity for the food currently selected in the listview.
+    A. Should check if user is selecting something in the listview and if not should have a show and wait error popup.
+    B. Should then set the quantity to the food object and refresh the pantry list to display the updated listview.
+    3. Incrementing the quantity should increment the quantity for the food currently selected in the listview.
+    A. Should check if the user is selecting something in the listview and if not should have a show and wait error popup.
+    B. If the user does have something selected it should increase the quantity by one and then refresh the pantry list to display the updated listview.
+    4. Decrementing the quantity should decrement the quantity for the food currently selected in the listview.
+    A. Should check if user is selecting something in the listview and if not should have a show and wait error popup.
+    B. If the user does have something selected it should decrease the quantity by one and then refresh the pantry list to display the updated listview.
+    C. If the user tries to decrease quantity, by going past zero it should have a show and wait error popup.
+
+commit 9dbb310ae8342e2b9ece132e0ea0c4cb41809c55
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 16:31:18 2024 -0400
+
+    Business Logic for Updating Quantity of Food
+    
+    1. Updated the Food class to support updating quantity of food in the pantry.
+    2. I did this by implementing a method that allows setting the quantity.
+    A. This includes passing a value through a parameter to get the quantity value.
+    B. The value must be greater than or equal to zero as you cant have a negative number of food in the pantry.
+    C. Also Implemented Unit testing to test the setQuantity is following the precondition and working.
+    3. Added a method that allows incrementing the quantity.
+    A. This method increments the quantity by one each time it is called.
+    B. Implemented Unit testing for this method, to test each call of the method increased the quantity by one.
+    4. Added a method that allows decrementing the quantity.
+    A. This method decrements the quantity by one each time it is called.
+    B. However, this is only true if the quantity is not equal to zero as you cant have a negative number of food in pantry.
+    C. Implemented Unit testing for this method, to ensure the precondition is working and the method itself is decreasing by one each time it is called.
+
+commit d2a264619f4db508ec896a57ea3cd002e3471cb3
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 15:42:16 2024 -0400
+
+    Implementing UI for Updating Quantity
+    
+    1. Updated the MainWindow fxml and codebehind class to support the following:
+    A. Setting the quantity, added a label, textfield, and a button for setting the quantity of food.
+    B. Incrementing the quantity, added a button for the user, which I will later add a method to be able to click and increase by one.
+    C. Decrementing the quantity, added a button for the user, which I will later add a method to be able to click and decrease by one.
+
+commit cc1f15f36f156e37b2e666deebd68515ad94433c
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 25 00:23:15 2024 -0400
+
+    Connect UI to Business Logic for Adding Food
+    
+    1. Updated the MainWindow class to implement the method for adding a food item.
+            I did this by setting the types for ComboBox and ListView.
+    2. I then set up the comboBox by adding the given types of food from the instructions,
+            so when adding a food item the food object is created from using the name from the textfield and type from the combobox.
+    3. I then implemented the addFood method to be able to add food to the listview.
+    A. I did this by first getting the food name and type from the textField and combobox.
+    B. Then I added a try and catch to handle the possibility of an IllegalArgumentException, by alerting the user with a show and wait errorPopup.
+    C. If the user passes through the try block, it will then add the food name and quantity to the pantry.
+
+commit 13a2fc26858691aad0836995751297237a8a039d
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Tue Sep 24 23:06:16 2024 -0400
+
+    Business Logic for Storing Food Test Cases
+    
+    1. Created a nested test package for the Food class in the model package.
+    2. Then created two separate test Clases to keep the testing seperate.
+    3. Tested the Constructor of the Food Class to ensure the name and type were getting initialized, and that the quantity was being set to zero.
+    4. Then Tested the toString method to ensure it was printing correctly.
+
+commit d88516dfd0941c6af1c096876d0971a5efa0f928
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Tue Sep 24 13:57:42 2024 -0400
+
+    Implementing the Business Logic for Storing a Food
+    1. Added a data class that will store the information for a single Food
+    A. This includes the food name, type, and quantity to store information.
+    B. Made the name and type final variables as they should not be allowed to change.
+    2. Added getters for each field to get the information about the food.
+    3. Added a toString that returns the name of the food and quantity.
+
+commit 4b2ede3851ae99cc5fecae58a28e4d36c45eed73
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Tue Sep 24 00:02:25 2024 -0400
+
+    Adding UI Components for Adding Food
+    
+    1. Updated the MainWindow fxml and code behind class to support the folllowing components.
+    A. Created a label and textfield for entering the name for a new food.
+    B. Created a label and combo box for entering the type for a new food.
+    C. Added a button to the gui for submitting information for a new food.
+    D. Added a listview to enable the user to select a food from the pantry.
+
+commit 8d53980edf365846e8ffdc3ee244b0b70e91e10f
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Sep 19 16:10:59 2024 -0400
+
+    Updated Class Paths
+    
+    1. Updated the naming conventions of the project to make more sense.
+    2. Updated the naming convention of the package to be project 1 so it can compile.
+    3. Updated the MainWindow.fxml AnchorPane to refrence the fx:controller project1 so it can run.
+    4. Updated the WINDOW_TITLE in the Main class to "Pantry Tracker" which fits better for the project.
+
+commit 35d7dd3e584d95dc4b3e58b32d70ef4a5f820640
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Sep 19 15:24:38 2024 -0400
+
+    Added Project 1 to the Repo
+    
+    Added the JavaFx Sample code to the local repo
+
+commit a05f34ee0a3983b49dd7e15f6537cea10af8b322
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Sep 19 00:52:45 2024 -0400
+
+    Implemented Test Cases and Fixed Static Methods
+    
+    1. After rereading the lab instructions it said "static method which accepts an Array of BillItem Objects as input",
+            so just in case I changed my paramaters from passing through a bill object into passing an Array of BillItems.
+    
+    2. Implementing the test cases I wanted to test anything that the static method would include.
+    A. TestGetSubtotal, I wanted to check the items name and amount in the bill and the sub total.
+    B. TestGetTax, I wanted to check the items name, amount, sub total, and tax. I checked sub total in this case,
+            because the tax is derived from the sub total so ensuring there both right is key.
+    C. TestGetTip, I wanted to check the items name, amount, sub total, and tip. This followed the same structure as the sub total,
+            where the tip is derived from the sub total.
+    D. TestGetTotal, I wanted to check everything: items name, amount, sub total, tax, tip, and total. This is because the total derives from everyother value added up together,
+            so ensuring each piece of information is correct ensures the static method getTotal works.
+
+commit af5b194192cf1e554d9502669790dcb8195e0ddc
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 18 23:55:55 2024 -0400
+
+    Static Bill Calculations
+    
+    1. Changed the methods of the get subtotal, tax, tip, and total for an Array of BillItem objects in a bill
+            to be static in a seperate class. I did this so it can get called without needing a specific bill object.
+    
+    2. I havent deleted the original methods in the Bill class as I want to test the static methods and ensure my implmentation is correct.
+
+commit 4f0475fae01f6d7985eabf6a0bda1dfc740cab7d
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Sep 12 16:17:36 2024 -0400
+
+    Fixed Converted the Fields of BillItem Class to Final
+    
+    1. Changed the variables name and amount to be final.
+            This will ensure once the field is set in the BillItem constructor it can't be changed.
+
+commit ce8f4ccd79d43409a7eb0f6950d7496236236290
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Sep 12 15:50:36 2024 -0400
+
+    Converted The fields of BillItem Class to Final
+    1. Changed the variables name and amount to be final.
+            This will ensure once the field is set in the BillItem constructor it can't be changed.
+
+commit 6657cfc8f142df8a90c1d66519b22d471fd49f74
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Sep 12 15:45:49 2024 -0400
+
+    Added Fixed Lab 4 to Repo
+
+commit 42712e02b2ddf748b1f5ee74af462b76c1b33dab
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Sep 12 15:33:26 2024 -0400
+
+    Added Lab 4 to the Repo
+
+commit 17bd5ecd9cf1ef1ec6a2e1278e052eeee6beed43
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Wed Sep 11 20:34:09 2024 -0400
+
+    Added Testing for the CalculateAverage method
+    
+    1. When I added test cases I realized I had to change how the method calculateAverage worked.
+            Instead of passing through a ListView I decided to pass through an ArrayList of Students to make it testable.
+            I changed a few lines in my MainWindow code to compensate this by adding a ArrayList variable and storing the ListView items in there.
+    2. When it came to creating the test cases I felt the only necessary test cases was when there was zero, one, and multiple students in the list.
+            I then checked not only the average being correct but the name and grade of each student and how big the list was.
+
+commit d4dfc44db3470a572cc02ba870151dd4aefc471c
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Tue Sep 10 22:49:56 2024 -0400
+
+    Corrected and Fixed the Implementation of Getting Average Grade
+    
+    1. Instead of getting the average of students in the view package I created a AverageCalculator class in the model package.
+            In this class I created a static method to calculate and return the average grade of students.
+    
+    2. To fully implement this new class, I got rid of the old getAverage private helper method in the MainWindow class.
+            I then called this static method in the MainWindow class to calculate the average grade of students.
+
+commit e4ab72b23fc23c28664fe88b84d4baf9a83ebe21
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Tue Sep 10 12:31:29 2024 -0400
+
+    Displaying Average Grade For Studens
+    
+    1. To clear the code up I made the getAverage a private helper method,
+            I did this so I can call this method in both add and remove Student.
+            I wanted the textField for studentAverage to update whenever a students get added or removed.
+    
+    2. In my getAverage method I did a for each loop to iterate over the list of students and get their total grade.
+            I then got the average and did Math.round to get the average to two decimal places.
+
+commit 2d1f935e0e9c5d1418f8dab504fcabc9126a5e2b
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Sep 5 21:23:36 2024 -0400
+
+    Test Cases
+    
+    1. Made Test cases for the Student constructor including ranges and null checks.
+    2. Also implemented the Math.round function so grades have two decimal places.
+
+commit 0d70ce42caa1712755e50afe84baf45e1bfe6584
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Sep 5 20:29:57 2024 -0400
+
+    Added checkGrade and Implemented Preconditions
+    
+    1. I added a getGrade method in the Student class, so I am able to store the grade of a student.
+    2. I added the method checkGrade in the MainWindow class to be able to dispaly the grade of the selected student with the use of a button.
+    3. I also implemented preconditions to the Student constructor to ensure the grade range of 0<= grade <= 100.
+
+commit 17412e43556d0cfbb3e75c0f6624a4ef7edb4822
+Author: Jake T Miranda <jmirand3@my.westga.edu>
+Date:   Thu Sep 5 16:35:50 2024 -0400
+
+    Added lab 3 to the Repo and Made Changes to Code
+    
+    1. Added a remove student to remove the selected student
+    2. Added catch exceptions
+
+commit f2f75054eb8929131d2ea65a705fff4808a42ed4
+Author: JakeMiranda3 <jmirand3@my.westga.edu>
+Date:   Thu Sep 5 15:34:17 2024 -0400
+
+    Initial commit
