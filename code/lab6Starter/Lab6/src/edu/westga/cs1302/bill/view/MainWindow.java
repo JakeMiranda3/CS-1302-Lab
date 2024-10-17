@@ -1,12 +1,15 @@
 package edu.westga.cs1302.bill.view;
 
 import java.io.IOException;
+import java.util.Comparator;
 
 import edu.westga.cs1302.bill.model.Bill;
 import edu.westga.cs1302.bill.model.BillItem;
 import edu.westga.cs1302.bill.model.BillPersistenceManager;
 import edu.westga.cs1302.bill.model.CSVBillPersistenceManager;
 import edu.westga.cs1302.bill.model.TSVBillPersistenceManager;
+import edu.westga.cs1302.bill.model.BillAscendingCostComparator;
+import edu.westga.cs1302.bill.model.BillDescendingCostComparator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -33,6 +36,9 @@ public class MainWindow {
 	private ComboBox<String> serverName;
 	@FXML
 	private ComboBox<BillPersistenceManager> format;
+
+	@FXML
+	private ComboBox<Comparator<BillItem>> order;
 
 	@FXML
 	void addItem(ActionEvent event) {
@@ -71,6 +77,13 @@ public class MainWindow {
 		}
 	}
 
+	@FXML
+	void changeOrder(ActionEvent event) {
+		this.bill.sort(this.order.getValue());
+		this.updateReceipt();
+
+	}
+
 	private void displayErrorPopup(String message) {
 		Alert alert = new Alert(Alert.AlertType.ERROR);
 		alert.setContentText(message);
@@ -78,7 +91,13 @@ public class MainWindow {
 	}
 
 	@FXML
+	void changeFormat(ActionEvent event) {
+		this.saveBillData(event);
+	}
+
+	@FXML
 	void initialize() {
+		assert this.order != null : "fx:id=\"order\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.amount != null : "fx:id=\"amount\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.format != null : "fx:id=\"format\" was not injected: check your FXML file 'MainWindow.fxml'.";
 		assert this.name != null : "fx:id=\"name\" was not injected: check your FXML file 'MainWindow.fxml'.";
@@ -92,6 +111,9 @@ public class MainWindow {
 		this.format.getItems().add(new CSVBillPersistenceManager());
 		this.format.getItems().add(new TSVBillPersistenceManager());
 		this.format.setValue(this.format.getItems().get(0));
+		this.order.getItems().add(new BillAscendingCostComparator());
+		this.order.getItems().add(new BillDescendingCostComparator());
+		this.order.setValue(this.order.getItems().get(0));
 		this.bill = this.format.getValue().loadBillData();
 		this.updateReceipt();
 	}

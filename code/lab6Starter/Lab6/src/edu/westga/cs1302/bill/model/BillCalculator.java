@@ -1,6 +1,7 @@
 package edu.westga.cs1302.bill.model;
 
-/** Calculates amounts for bills
+/**
+ * Calculates amounts for bills
  * 
  * @author CS 1302
  * @version Fall 2024

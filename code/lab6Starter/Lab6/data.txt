@@ -1,2 +1,3 @@
-Bob
-setahj	25.0
+Alice
+fruuit	5.0
+steak	25.0
