@@ -1,6 +1,10 @@
 package edu.westga.cs1302.project2.view;
 
+import java.util.Comparator;
+
 import edu.westga.cs1302.project2.model.Ingredient;
+import edu.westga.cs1302.project2.model.IngredientNameComparator;
+import edu.westga.cs1302.project2.model.IngredientTypeComparator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -15,14 +19,20 @@ import javafx.scene.control.TextField;
  * @version Fall 2024
  */
 public class MainWindow {
-	@FXML private ComboBox<String> ingredientType;
-	@FXML private ListView<Ingredient> ingredientsList;
-	@FXML private TextField ingredientName;
+	@FXML
+	private ComboBox<String> ingredientType;
+	@FXML
+	private ListView<Ingredient> ingredientsList;
+	@FXML
+	private TextField ingredientName;
+	@FXML
+	private ComboBox<Comparator<Ingredient>> sort;
 
 	@FXML
 	void addIngredient(ActionEvent event) {
 		try {
-			this.ingredientsList.getItems().add(new Ingredient(this.ingredientName.getText(), this.ingredientType.getValue()));
+			this.ingredientsList.getItems()
+					.add(new Ingredient(this.ingredientName.getText(), this.ingredientType.getValue()));
 			this.ingredientName.clear();
 			this.ingredientType.getSelectionModel().clearSelection();
 		} catch (IllegalArgumentException error) {
@@ -31,6 +41,7 @@ public class MainWindow {
 			alert.setContentText(error.getMessage());
 			alert.showAndWait();
 		}
+		this.sortIngredients(null);
 	}
 
 	@FXML
@@ -39,6 +50,12 @@ public class MainWindow {
 		if (selectedIngredient != null) {
 			this.ingredientsList.getItems().remove(selectedIngredient);
 		}
+		this.sortIngredients(null);
+	}
+
+	@FXML
+	void sortIngredients(ActionEvent event) {
+		this.ingredientsList.getItems().sort(this.sort.getValue());
 	}
 
 	@FXML
@@ -48,6 +65,10 @@ public class MainWindow {
 		this.ingredientType.getItems().add("Bread");
 		this.ingredientType.getItems().add("Fruit");
 		this.ingredientType.getItems().add("Spice");
+
+		this.sort.getItems().add(new IngredientTypeComparator());
+		this.sort.getItems().add(new IngredientNameComparator());
+		this.sort.setValue(this.sort.getItems().get(0));
 
 	}
 }
