@@ -20,7 +20,12 @@
       <Line endX="-176.0" endY="428.0" layoutX="417.0" layoutY="202.0" startX="-176.0" startY="-191.0" />
       <Label layoutX="92.0" layoutY="83.0" text="Ingredients" />
       <Line endX="-412.0" endY="-133.0" layoutX="427.0" layoutY="212.0" startX="-200.0" startY="-133.0" />
-      <ComboBox fx:id="sort" layoutX="251.0" layoutY="79.0" onAction="#sortIngredients" prefWidth="150.0" />
-      <Label layoutX="251.0" layoutY="58.0" text="Sort By" />
+      <ComboBox fx:id="sort" layoutX="250.0" layoutY="41.0" onAction="#sortIngredients" prefWidth="150.0" />
+      <Label layoutX="251.0" layoutY="20.0" text="Sort By" />
+      <ListView fx:id="recipe" layoutX="250.0" layoutY="182.0" prefHeight="445.0" prefWidth="200.0" />
+      <Button layoutX="457.0" layoutY="203.0" mnemonicParsing="false" onAction="#addIngredientToRecipe" text="Add Ingredient" />
+      <Label layoutX="253.0" layoutY="127.0" text="Recipe Name" />
+      <TextField fx:id="recipeName" layoutX="251.0" layoutY="151.0" promptText="Enter Recipe Name..." />
+      <Button layoutX="407.0" layoutY="151.0" mnemonicParsing="false" onAction="#addRecipe" text="Add Recipe" />
    </children>
 </AnchorPane>

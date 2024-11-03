@@ -29,6 +29,12 @@ public class MainWindow {
 	private ComboBox<Comparator<Ingredient>> sort;
 
 	@FXML
+	private ListView<Ingredient> recipe;
+
+	@FXML
+	private TextField recipeName;
+
+	@FXML
 	void addIngredient(ActionEvent event) {
 		try {
 			this.ingredientsList.getItems()
@@ -56,6 +62,23 @@ public class MainWindow {
 	@FXML
 	void sortIngredients(ActionEvent event) {
 		this.ingredientsList.getItems().sort(this.sort.getValue());
+	}
+
+	@FXML
+	void addIngredientToRecipe(ActionEvent event) {
+		Ingredient ingredient = this.ingredientsList.getSelectionModel().getSelectedItem();
+		if (ingredient != null) {
+			this.recipe.getItems().add(ingredient);
+		} else {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setContentText("No ingredient selected. Unable to add to recipe.");
+			errorPopup.showAndWait();
+		}
+	}
+
+	@FXML
+	void addRecipe(ActionEvent event) {
+
 	}
 
 	@FXML
