@@ -12,7 +12,10 @@ public class IngredientNameComparator implements Comparator<Ingredient> {
 
 	@Override
 	public int compare(Ingredient o1, Ingredient o2) {
-		return o1.getName().compareTo(o2.getName());
+		if (o1 == null || o2 == null) {
+			throw new IllegalArgumentException("Ingredient can't be null");
+		}
+		return o1.getName().compareToIgnoreCase(o2.getName());
 	}
 
 	@Override
