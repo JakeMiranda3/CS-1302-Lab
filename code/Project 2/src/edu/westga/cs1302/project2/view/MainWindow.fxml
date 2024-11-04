@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
@@ -21,11 +22,13 @@
       <Label layoutX="92.0" layoutY="83.0" text="Ingredients" />
       <Line endX="-412.0" endY="-133.0" layoutX="427.0" layoutY="212.0" startX="-200.0" startY="-133.0" />
       <ComboBox fx:id="sort" layoutX="250.0" layoutY="41.0" onAction="#sortIngredients" prefWidth="150.0" />
-      <Label layoutX="251.0" layoutY="20.0" text="Sort By" />
-      <ListView fx:id="recipe" layoutX="250.0" layoutY="182.0" prefHeight="445.0" prefWidth="200.0" />
-      <Button layoutX="457.0" layoutY="203.0" mnemonicParsing="false" onAction="#addIngredientToRecipe" text="Add Ingredient" />
-      <Label layoutX="253.0" layoutY="127.0" text="Recipe Name" />
-      <TextField fx:id="recipeName" layoutX="251.0" layoutY="151.0" promptText="Enter Recipe Name..." />
-      <Button layoutX="407.0" layoutY="151.0" mnemonicParsing="false" onAction="#addRecipe" text="Add Recipe" />
+      <Label layoutX="250.0" layoutY="20.0" text="Sort By" />
+      <ListView fx:id="recipe" layoutX="250.0" layoutY="176.0" prefHeight="205.0" prefWidth="200.0" />
+      <Button layoutX="250.0" layoutY="139.0" mnemonicParsing="false" onAction="#addIngredientToRecipe" text="Add Ingredient" />
+      <Label layoutX="250.0" layoutY="83.0" text="Recipe Name" />
+      <TextField fx:id="recipeName" layoutX="250.0" layoutY="107.0" promptText="Enter Recipe Name..." />
+      <Button layoutX="361.0" layoutY="139.0" mnemonicParsing="false" onAction="#addRecipe" text="Add Recipe" />
+      <TextArea fx:id="recipes" layoutX="250.0" layoutY="440.0" prefHeight="187.0" prefWidth="256.0" />
+      <Button layoutX="250.0" layoutY="405.0" mnemonicParsing="false" onAction="#displayRecipesWithIngredient" text="Display Recipes with Ingredient" />
    </children>
 </AnchorPane>

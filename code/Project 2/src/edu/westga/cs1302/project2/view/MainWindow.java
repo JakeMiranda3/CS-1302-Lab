@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
@@ -39,6 +40,9 @@ public class MainWindow {
 
 	@FXML
 	private TextField recipeName;
+	
+	@FXML
+    private TextArea recipes;
 
 	@FXML
 	void addIngredient(ActionEvent event) {
@@ -120,6 +124,11 @@ public class MainWindow {
 		this.recipe.getItems().clear();
 
 	}
+	
+    @FXML
+    void displayRecipesWithIngredient(ActionEvent event) {
+
+    }
 
 	@FXML
 	void initialize() {
