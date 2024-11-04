@@ -40,8 +40,9 @@ class TestRecipeToString {
 		listOfIngredients.add(ingredient2);
 		Recipe recipe = new Recipe("ThanksGiving Turkey", listOfIngredients);
 		String result = Utility.recipeToString(recipe);
-		assertEquals("ThanksGiving Turkey" + System.lineSeparator() + "Turkey-Meat, Cranberry-Fruit"
-				+ System.lineSeparator(), result, "Checks recipeToString when theres two ingredients.");
+		assertEquals(
+				"ThanksGiving Turkey" + System.lineSeparator() + "Turkey-Meat,Cranberry-Fruit" + System.lineSeparator(),
+				result, "Checks recipeToString when theres two ingredients.");
 
 	}
 

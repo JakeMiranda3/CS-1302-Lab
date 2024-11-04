@@ -42,7 +42,6 @@ class TestWriteRecipeToFile {
 		listOfIngredients.add(ingredient1);
 		Recipe recipe = new Recipe("ThanksGiving Turkey", listOfIngredients);
 		RecipeToFile write = new RecipeToFile();
-
 		write.writeRecipeToFile(recipe);
 		File inputFile = new File(RecipeToFile.DATA_FILE);
 		try (Scanner reader = new Scanner(inputFile)) {
