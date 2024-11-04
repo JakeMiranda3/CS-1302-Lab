@@ -8,6 +8,7 @@ import java.util.Comparator;
 import edu.westga.cs1302.project2.model.Ingredient;
 import edu.westga.cs1302.project2.model.IngredientNameComparator;
 import edu.westga.cs1302.project2.model.IngredientTypeComparator;
+import edu.westga.cs1302.project2.model.LoadRecipesFromFile;
 import edu.westga.cs1302.project2.model.Recipe;
 import edu.westga.cs1302.project2.model.RecipeToFile;
 import edu.westga.cs1302.project2.model.Utility;
@@ -40,9 +41,9 @@ public class MainWindow {
 
 	@FXML
 	private TextField recipeName;
-	
+
 	@FXML
-    private TextArea recipes;
+	private TextArea recipes;
 
 	@FXML
 	void addIngredient(ActionEvent event) {
@@ -124,11 +125,41 @@ public class MainWindow {
 		this.recipe.getItems().clear();
 
 	}
-	
-    @FXML
-    void displayRecipesWithIngredient(ActionEvent event) {
 
-    }
+	@FXML
+	void displayRecipesWithIngredient(ActionEvent event) throws FileNotFoundException, IOException {
+
+		Ingredient ingredient = this.ingredientsList.getSelectionModel().getSelectedItem();
+		if (ingredient != null) {
+			try {
+				LoadRecipesFromFile readRecipes = new LoadRecipesFromFile();
+				ArrayList<Recipe> recipes = readRecipes.loadRecipes();
+				recipes = readRecipes
+						.loadRecipesWithSpecifiedIngredient(this.ingredientsList.getSelectionModel().getSelectedItem());
+				String recipeText = Utility.listOfRecipesToString(recipes);
+				this.recipes.setText(recipeText);
+			} catch (IllegalArgumentException error) {
+				Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+				errorPopup.setHeaderText("Unable to display recipe's");
+				errorPopup.setContentText(error.getMessage());
+				errorPopup.showAndWait();
+			} catch (FileNotFoundException error) {
+				Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+				errorPopup.setHeaderText("Unable to display recipe's");
+				errorPopup.setContentText("File cannot be found.");
+			} catch (IOException error) {
+				Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+				errorPopup.setHeaderText("Unable to display recipe's");
+				errorPopup.setContentText("File does not exist or cannot be opened for any other reason.");
+				errorPopup.showAndWait();
+			}
+		} else {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setContentText("No ingredient selected. Unable to display recipes.");
+			errorPopup.showAndWait();
+		}
+
+	}
 
 	@FXML
 	void initialize() {
