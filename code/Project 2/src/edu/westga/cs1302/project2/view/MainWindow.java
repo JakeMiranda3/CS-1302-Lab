@@ -1,10 +1,16 @@
 package edu.westga.cs1302.project2.view;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 
 import edu.westga.cs1302.project2.model.Ingredient;
 import edu.westga.cs1302.project2.model.IngredientNameComparator;
 import edu.westga.cs1302.project2.model.IngredientTypeComparator;
+import edu.westga.cs1302.project2.model.Recipe;
+import edu.westga.cs1302.project2.model.RecipeToFile;
+import edu.westga.cs1302.project2.model.Utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -78,6 +84,40 @@ public class MainWindow {
 
 	@FXML
 	void addRecipe(ActionEvent event) {
+		String name = this.recipeName.getText();
+		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+		for (Ingredient currIngredient : this.recipe.getItems()) {
+			ingredients.add(currIngredient);
+		}
+
+		try {
+			Recipe recipe = new Recipe(name, ingredients);
+			Utility.recipeToString(recipe);
+			RecipeToFile recipeFile = new RecipeToFile();
+			recipeFile.writeRecipeToFile(recipe);
+		} catch (IllegalArgumentException error) {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setHeaderText("Unable to create recipe");
+			errorPopup.setContentText(error.getMessage());
+			errorPopup.showAndWait();
+		} catch (IllegalStateException error) {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setHeaderText("Unable to create recipe");
+			errorPopup.setContentText(error.getMessage());
+			errorPopup.showAndWait();
+		} catch (FileNotFoundException error) {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setHeaderText("Unable to create recipe");
+			errorPopup.setContentText("File cannot be found.");
+			errorPopup.showAndWait();
+		} catch (IOException error) {
+			Alert errorPopup = new Alert(Alert.AlertType.ERROR);
+			errorPopup.setHeaderText("Unable to create recipe");
+			errorPopup.setContentText("File does not exist or cannot be opened for any other reason.");
+			errorPopup.showAndWait();
+		}
+		this.recipeName.clear();
+		this.recipe.getItems().clear();
 
 	}
 

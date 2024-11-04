@@ -2,3 +2,15 @@ ThanksGiving Turkey
 Turkey-Meat
 Filet Mignon
 Steak-Meat
+Filet
+Steak-Meat
+BReakfast
+bread-Vegetable, Steak-Bread
+Bread
+efe-Fruit
+Blue
+efe-Fruit, stea-Meat
+Caeser Salad
+Salad-Vegetable, Chicekn-Meat
+Chicken Causer
+c-Meat

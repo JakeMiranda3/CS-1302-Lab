@@ -31,7 +31,7 @@ public class RecipeToFile {
 		try (Scanner reader = new Scanner(inputFile)) {
 			while (reader.hasNextLine()) {
 				if (recipe.getName().equalsIgnoreCase(reader.nextLine())) {
-					throw new IllegalStateException("A recipe already exist in the file with that name");
+					throw new IllegalStateException("A recipe already exist in the file with that name.");
 
 				}
 			}
