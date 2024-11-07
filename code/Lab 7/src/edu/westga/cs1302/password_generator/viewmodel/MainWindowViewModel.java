@@ -20,7 +20,7 @@ public class MainWindowViewModel {
 	private BooleanProperty digitProperty;
 	private BooleanProperty lowerCaseProperty;
 	private BooleanProperty upperCaseProperty;
-	private StringProperty errorText;
+	private StringProperty errorTextProperty;
 
 	/**
 	 * Instantiates a new main window view model
@@ -31,7 +31,7 @@ public class MainWindowViewModel {
 		this.digitProperty = new SimpleBooleanProperty();
 		this.lowerCaseProperty = new SimpleBooleanProperty();
 		this.upperCaseProperty = new SimpleBooleanProperty();
-		this.errorText = new SimpleStringProperty("Error: ");
+		this.errorTextProperty = new SimpleStringProperty("Error: ");
 
 	}
 
@@ -86,7 +86,7 @@ public class MainWindowViewModel {
 	 * @return the errorText.
 	 */
 	public StringProperty errorText() {
-		return this.errorText;
+		return this.errorTextProperty;
 	}
 
 	/**
@@ -98,8 +98,8 @@ public class MainWindowViewModel {
 		try {
 			minimumLength = Integer.parseInt(this.lengthProperty.getValue());
 		} catch (NumberFormatException numberError) {
-			this.errorText.setValue("Error: Invalid Minimum Length: must be a positive integer, but was "
-					+ this.lengthProperty.getValue());
+			this.errorTextProperty.setValue("Error: Invalid Minimum Length: must be a positive integer, but was "
+					+ this.lengthProperty.getValue() + ".");
 			return;
 		}
 		try {
@@ -113,7 +113,7 @@ public class MainWindowViewModel {
 			this.outputProperty.set(passwordText);
 
 		} catch (IllegalArgumentException invalidLengthError) {
-			this.errorText.setValue("Error: Invalid Minimum Length: " + invalidLengthError.getMessage());
+			this.errorTextProperty.setValue("Error: Invalid Minimum Length: " + invalidLengthError.getMessage());
 			return;
 		}
 

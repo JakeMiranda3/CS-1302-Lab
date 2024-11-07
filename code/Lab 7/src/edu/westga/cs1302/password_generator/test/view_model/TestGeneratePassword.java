@@ -35,7 +35,7 @@ class TestGeneratePassword {
 		generate.generatePassword();
 		String result = generate.errorText().getValue();
 		assertEquals("Error: Invalid Minimum Length: must be a positive integer, but was "
-				+ generate.lengthProperty().getValue(), result);
+				+ generate.lengthProperty().getValue() + ".", result);
 
 	}
 

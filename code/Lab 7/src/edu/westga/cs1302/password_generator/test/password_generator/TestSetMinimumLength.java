@@ -11,15 +11,18 @@ class TestSetMinimumLength {
 	@Test
 	void testInvalidLength() {
 		PasswordGenerator generator = new PasswordGenerator(0);
-		
-		assertThrows(IllegalArgumentException.class, ()->{generator.setMinimumLength(0);});
+
+		assertThrows(IllegalArgumentException.class, () -> {
+			generator.setMinimumLength(0);
+		});
 	}
+
 	@Test
 	void testValidLength() {
 		PasswordGenerator generator = new PasswordGenerator(0);
-		
+
 		generator.setMinimumLength(1);
-		
+
 		assertEquals(1, generator.getMinimumLength(), "checking length");
 	}
 
