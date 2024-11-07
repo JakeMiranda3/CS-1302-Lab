@@ -1,5 +1,7 @@
 package edu.westga.cs1302.password_generator.viewmodel;
 
+import java.util.Random;
+
 import edu.westga.cs1302.password_generator.model.PasswordGenerator;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -30,6 +32,7 @@ public class MainWindowViewModel {
 		this.lowerCaseProperty = new SimpleBooleanProperty();
 		this.upperCaseProperty = new SimpleBooleanProperty();
 		this.errorText = new SimpleStringProperty("Error: ");
+
 	}
 
 	/**
@@ -97,23 +100,21 @@ public class MainWindowViewModel {
 		} catch (NumberFormatException numberError) {
 			this.errorText.setValue("Error: Invalid Minimum Length: must be a positive integer, but was "
 					+ this.lengthProperty.getValue());
+			return;
 		}
 		try {
-			PasswordGenerator password = new PasswordGenerator(minimumLength);
-			if (this.digitProperty.getValue()) {
-				password.setMustHaveAtLeastOneDigit(true);
-			}
-			if (this.upperCaseProperty.getValue()) {
-				password.setMustHaveAtLeastOneUpperCaseLetter(true);
-			}
-			if (this.lowerCaseProperty.getValue()) {
-				password.setMustHaveAtLeastOneLowerCaseLetter(true);
-			}
+			Random randomNumberGenerator = new Random();
+			PasswordGenerator password = new PasswordGenerator(randomNumberGenerator.nextLong());
+			password.setMinimumLength(minimumLength);
+			password.setMustHaveAtLeastOneDigit(this.digitProperty.getValue());
+			password.setMustHaveAtLeastOneUpperCaseLetter(this.upperCaseProperty.getValue());
+			password.setMustHaveAtLeastOneLowerCaseLetter(this.lowerCaseProperty.getValue());
 			String passwordText = password.generatePassword();
 			this.outputProperty.set(passwordText);
 
 		} catch (IllegalArgumentException invalidLengthError) {
 			this.errorText.setValue("Error: Invalid Minimum Length: " + invalidLengthError.getMessage());
+			return;
 		}
 
 	}
