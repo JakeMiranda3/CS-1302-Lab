@@ -1,12 +1,16 @@
 package edu.westga.cs1302.password_generator.viewmodel;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import edu.westga.cs1302.password_generator.model.PasswordGenerator;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 
 /**
  * Manages utilizing the model and makes properties available to bind the UI
@@ -20,10 +24,8 @@ public class ViewModel {
 	private BooleanProperty requireDigits;
 	private BooleanProperty requireLowercase;
 	private BooleanProperty requireUppercase;
-
-	private StringProperty password;
 	private StringProperty errorText;
-
+	private ListProperty<String> pastPasswords;
 	private PasswordGenerator generator;
 
 	/**
@@ -35,11 +37,21 @@ public class ViewModel {
 		this.requireLowercase = new SimpleBooleanProperty(false);
 		this.requireUppercase = new SimpleBooleanProperty(false);
 
-		this.password = new SimpleStringProperty("");
+		this.pastPasswords = new SimpleListProperty<String>(FXCollections.observableArrayList(new ArrayList<String>()));
+
 		this.errorText = new SimpleStringProperty("");
 
 		Random randomNumberGenerator = new Random();
 		this.generator = new PasswordGenerator(randomNumberGenerator.nextLong());
+	}
+
+	/**
+	 * Gets the list of past passwords
+	 * 
+	 * @return Returns the list of past passwords
+	 */
+	public ListProperty<String> getPastPasswords() {
+		return this.pastPasswords;
 	}
 
 	/**
@@ -79,15 +91,6 @@ public class ViewModel {
 	}
 
 	/**
-	 * Return the password property
-	 * 
-	 * @return the password property
-	 */
-	public StringProperty getPassword() {
-		return this.password;
-	}
-
-	/**
 	 * Return the error text property
 	 * 
 	 * @return the error text property
@@ -108,7 +111,6 @@ public class ViewModel {
 	 */
 	public void generatePassword() {
 		int minimumLength = -1;
-		this.password.setValue("");
 
 		try {
 			minimumLength = Integer.parseInt(this.minimumLength.getValue());
@@ -131,7 +133,8 @@ public class ViewModel {
 
 		String password = this.generator.generatePassword();
 
-		this.password.setValue(password);
+		this.pastPasswords.getValue().add(0, password);
+
 	}
 
 }
