@@ -1,6 +1,7 @@
 package edu.westga.cs1302.password_generator.view;
 
 import edu.westga.cs1302.password_generator.viewmodel.ViewModel;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -55,6 +56,7 @@ public class MainWindow {
 
 		this.output.textProperty().bind(this.vm.getPassword());
 		this.errorTextLabel.textProperty().bind(this.vm.getErrorText());
+		this.setUpEnablingOfControls();
 
 		this.generatePasswordButton.setOnAction((event) -> {
 			this.vm.generatePassword();
@@ -75,5 +77,12 @@ public class MainWindow {
 			Stage stage = (Stage) (this.guiPane).getScene().getWindow();
 			stage.close();
 		});
+
+	}
+
+	private void setUpEnablingOfControls() {
+
+		this.generatePasswordButton.disableProperty().bind(this.minimumLength.textProperty().isEmpty());
+
 	}
 }
