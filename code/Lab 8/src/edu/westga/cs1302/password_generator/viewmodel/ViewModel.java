@@ -134,6 +134,7 @@ public class ViewModel {
 		String password = this.generator.generatePassword();
 
 		this.pastPasswords.getValue().add(0, password);
+	
 
 	}
 
