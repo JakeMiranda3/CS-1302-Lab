@@ -30,7 +30,7 @@ class TestSaveTaskManagerData {
 			TaskManagerPersistenceManager.saveTaskManagerData(manager, DATA_FILE);
 		});
 	}
-	
+
 	@Test
 	void testNullDataFile() {
 		TaskManager manager = new TaskManager();
@@ -38,6 +38,7 @@ class TestSaveTaskManagerData {
 			TaskManagerPersistenceManager.saveTaskManagerData(manager, null);
 		});
 	}
+
 	@Test
 	void testEmptyDataFile() {
 		TaskManager manager = new TaskManager();

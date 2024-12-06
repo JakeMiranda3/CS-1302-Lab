@@ -28,7 +28,7 @@ public class TaskManagerPersistenceManager {
 			throw new IllegalArgumentException("Must provide task manager.");
 		}
 		if (manager.getTask().isEmpty()) {
-			throw new IllegalArgumentException("Must have task in task manager.");
+			throw new IllegalArgumentException("Must have tasks in task manager.");
 		}
 
 		if (dataFile == null || dataFile.isEmpty()) {
@@ -67,6 +67,8 @@ public class TaskManagerPersistenceManager {
 				manager.addTask(task);
 
 			}
+		} catch (IllegalArgumentException error) {
+			throw new IllegalArgumentException("Unable to create task bad title/description.");
 		}
 		return manager;
 	}
