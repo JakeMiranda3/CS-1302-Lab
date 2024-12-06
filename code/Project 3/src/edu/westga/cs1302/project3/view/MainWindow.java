@@ -66,6 +66,7 @@ public class MainWindow {
 				alert.setContentText("Unable to load add task window. ");
 				alert.showAndWait();
 			}
+			this.listOfTask.refresh();
 		});
 	}
 

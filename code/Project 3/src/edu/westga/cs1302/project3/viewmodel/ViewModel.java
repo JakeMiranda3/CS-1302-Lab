@@ -8,6 +8,8 @@ import edu.westga.cs1302.project3.model.TaskManager;
 import edu.westga.cs1302.project3.model.TaskManagerPersistenceManager;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 
 /**
@@ -22,6 +24,9 @@ public class ViewModel {
 
 	private ListProperty<Task> listOfTask;
 
+	private StringProperty taskTitle;
+	private StringProperty taskDescription;
+
 	/**
 	 * Initializes the properties for the viewmodel
 	 */
@@ -30,6 +35,10 @@ public class ViewModel {
 		this.manager.addTask(new Task("Default Task 1", "First task"));
 		this.manager.addTask(new Task("Default Task 2", "Second task"));
 		this.listOfTask = new SimpleListProperty<Task>(FXCollections.observableArrayList(this.manager.getTask()));
+
+		this.taskTitle = new SimpleStringProperty("");
+		this.taskDescription = new SimpleStringProperty("");
+
 	}
 
 	/**
@@ -63,6 +72,42 @@ public class ViewModel {
 	 */
 	public void saveTaskManagerData(String dataFile) throws IOException {
 		TaskManagerPersistenceManager.saveTaskManagerData(this.manager, dataFile);
+	}
+
+	/**
+	 * Gets the title of the task
+	 * 
+	 * @return Returns the title of the task
+	 */
+	public StringProperty getTaskTitle() {
+		return this.taskTitle;
+	}
+
+	/**
+	 * Gets the description of the task
+	 * 
+	 * @return Returns the description of the task
+	 */
+	public StringProperty getTaskDescription() {
+		return this.taskDescription;
+	}
+
+	/**
+	 * Adds task to task manager with given title and description by user
+	 */
+	public void addTask() {
+		String title = this.taskTitle.get();
+		String description = this.taskDescription.get();
+		if (title == null || title.isEmpty()) {
+			throw new IllegalArgumentException("Title can't be null or empty");
+		}
+		if (description == null || description.isEmpty()) {
+			throw new IllegalArgumentException("Description can't be null or empty");
+		}
+		Task task = new Task(title, description);
+		this.manager.addTask(task);
+		this.listOfTask.set(FXCollections.observableArrayList(this.manager.getTask()));
+
 	}
 
 }
