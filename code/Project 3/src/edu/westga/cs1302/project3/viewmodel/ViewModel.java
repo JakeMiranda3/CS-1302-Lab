@@ -54,4 +54,15 @@ public class ViewModel {
 
 	}
 
+	/**
+	 * Writes all task data to specified file
+	 * 
+	 * 
+	 * @param dataFile The specific file the user wants to use
+	 * @throws IOException
+	 */
+	public void saveTaskManagerData(String dataFile) throws IOException {
+		TaskManagerPersistenceManager.saveTaskManagerData(this.manager, dataFile);
+	}
+
 }

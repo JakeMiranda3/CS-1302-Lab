@@ -35,6 +35,11 @@ public class TaskManagerPersistenceManager {
 			throw new IllegalArgumentException("Data file cant be null or empty.");
 		}
 
+		File file = new File(dataFile);
+		if (!file.canWrite()) {
+			throw new SecurityException("The file cannot be written over. File may be read-only or not permissable.");
+		}
+
 		try (FileWriter writer = new FileWriter(dataFile)) {
 			for (Task currTask : manager.getTask()) {
 				writer.write(currTask.getTitle() + System.lineSeparator() + currTask.getDescription()

@@ -25,6 +25,8 @@ public class MainWindow {
 	private ListView<Task> listOfTask;
 	@FXML
 	private MenuItem loadTask;
+	@FXML
+	private MenuItem saveTask;
 
 	@FXML
 	private ViewModel vm;
@@ -33,7 +35,11 @@ public class MainWindow {
 	void initialize() {
 		this.vm = new ViewModel();
 		this.listOfTask.setItems(this.vm.getTasks());
+		this.loadTaskFile();
+		this.saveTaskFile();
+	}
 
+	private void loadTaskFile() {
 		this.loadTask.setOnAction((event) -> {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open Task File");
@@ -60,7 +66,33 @@ public class MainWindow {
 			}
 
 		});
+	}
 
+	private void saveTaskFile() {
+		this.saveTask.setOnAction((event) -> {
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setTitle("Save Task File");
+			fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt", "*.pdf"),
+					new ExtensionFilter("All Files", "*.*"));
+			File selectedFile = fileChooser.showSaveDialog(null);
+			if (selectedFile != null) {
+				try {
+					this.vm.saveTaskManagerData(selectedFile.getAbsolutePath());
+				} catch (IllegalArgumentException error) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setContentText(error.getMessage());
+					alert.showAndWait();
+				} catch (SecurityException error) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setContentText(error.getMessage());
+					alert.showAndWait();
+				} catch (IOException error) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setHeaderText("Unable to save task");
+					alert.setContentText("Unable to retrieve file path, please select a new file");
+				}
+			}
+		});
 	}
 
 }
