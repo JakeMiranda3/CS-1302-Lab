@@ -7,7 +7,9 @@ import edu.westga.cs1302.project3.model.Task;
 import edu.westga.cs1302.project3.model.TaskManager;
 import edu.westga.cs1302.project3.model.TaskManagerPersistenceManager;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -27,6 +29,8 @@ public class ViewModel {
 	private StringProperty taskTitle;
 	private StringProperty taskDescription;
 
+	private ObjectProperty<Task> selectedTask;
+
 	/**
 	 * Initializes the properties for the viewmodel
 	 */
@@ -39,10 +43,21 @@ public class ViewModel {
 		this.taskTitle = new SimpleStringProperty("");
 		this.taskDescription = new SimpleStringProperty("");
 
+		this.selectedTask = new SimpleObjectProperty<Task>(null);
+
 	}
 
 	/**
-	 * Return a tasks list property
+	 * Gets the selected task
+	 * 
+	 * @return Returns the selected tasks
+	 */
+	public ObjectProperty<Task> getSelectedTask() {
+		return this.selectedTask;
+	}
+
+	/**
+	 * Gets a tasks list property
 	 * 
 	 * @return Returns a list property of tasks
 	 */
@@ -108,6 +123,21 @@ public class ViewModel {
 		this.manager.addTask(task);
 		this.listOfTask.set(FXCollections.observableArrayList(this.manager.getTask()));
 
+	}
+
+	/**
+	 * Removes currently selected task from task manager
+	 * 
+	 * @precondition currTask != null
+	 */
+	public void removeTask() {
+		Task currTask = this.selectedTask.get();
+		if (currTask != null) {
+			this.manager.removeTask(currTask);
+			this.listOfTask.set(FXCollections.observableArrayList(this.manager.getTask()));
+		} else {
+			throw new IllegalArgumentException("Please select a task to remove.");
+		}
 	}
 
 }

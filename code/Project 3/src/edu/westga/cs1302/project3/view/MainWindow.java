@@ -36,6 +36,8 @@ public class MainWindow {
 	private MenuItem saveTask;
 	@FXML
 	private Button addTaskButton;
+	@FXML
+	private Button removeTask;
 
 	@FXML
 	private ViewModel vm;
@@ -44,8 +46,20 @@ public class MainWindow {
 	void initialize() {
 		this.vm = new ViewModel();
 		this.listOfTask.setItems(this.vm.getTasks());
+		
+		this.vm.getSelectedTask().bind(this.listOfTask.getSelectionModel().selectedItemProperty());
 		this.loadTaskFile();
 		this.saveTaskFile();
+
+		this.removeTask.setOnAction((event) -> {
+			try {
+				this.vm.removeTask();
+			} catch (IllegalArgumentException error) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setContentText("Please select a task to remove.");
+				alert.showAndWait();
+			}
+		});
 
 		this.addTaskButton.setOnAction((event) -> {
 			FXMLLoader loader = new FXMLLoader();
@@ -66,7 +80,6 @@ public class MainWindow {
 				alert.setContentText("Unable to load add task window. ");
 				alert.showAndWait();
 			}
-			this.listOfTask.refresh();
 		});
 	}
 
