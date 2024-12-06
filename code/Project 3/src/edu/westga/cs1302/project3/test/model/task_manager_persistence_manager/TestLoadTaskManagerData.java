@@ -41,9 +41,9 @@ class TestLoadTaskManagerData {
 
 	@Test
 	void testEmptyTaskInFile() throws IOException {
-		TaskManager manager = TaskManagerPersistenceManager.loadTaskManagerData(DATA_FILE);
-		assertTrue(manager.getTask().isEmpty());
-
+		assertThrows(IllegalArgumentException.class, () -> {
+			TaskManagerPersistenceManager.loadTaskManagerData(DATA_FILE);
+		});
 	}
 
 	@Test
@@ -53,8 +53,8 @@ class TestLoadTaskManagerData {
 			writer.write("Description" + System.lineSeparator());
 		}
 		TaskManager manager = TaskManagerPersistenceManager.loadTaskManagerData(DATA_FILE);
-		assertEquals("Title", manager.getTask().get(0).getTitle(), "Checks the first line");
-		assertEquals("Description", manager.getTask().get(0).getDescription(), "Checks the second line");
+		assertEquals("Title", manager.getTask().get(0).getTitle(), "Checks the title of the task");
+		assertEquals("Description", manager.getTask().get(0).getDescription(), "Checks description of the task");
 
 	}
 
@@ -67,10 +67,10 @@ class TestLoadTaskManagerData {
 			writer.write("Description2" + System.lineSeparator());
 		}
 		TaskManager manager = TaskManagerPersistenceManager.loadTaskManagerData(DATA_FILE);
-		assertEquals("Title", manager.getTask().get(0).getTitle(), "Checks the first line");
-		assertEquals("Description", manager.getTask().get(0).getDescription(), "Checks the second line");
-		assertEquals("Title2", manager.getTask().get(1).getTitle(), "Checks the third line");
-		assertEquals("Description2", manager.getTask().get(1).getDescription(), "Checks the fourth line");
+		assertEquals("Title", manager.getTask().get(0).getTitle(), "Checks the title of the task");
+		assertEquals("Description", manager.getTask().get(0).getDescription(), "Checks description of the task");
+		assertEquals("Title2", manager.getTask().get(1).getTitle(), "Checks the title of the task");
+		assertEquals("Description2", manager.getTask().get(1).getDescription(), "Checks description of the task");
 
 	}
 

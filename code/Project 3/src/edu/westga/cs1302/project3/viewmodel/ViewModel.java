@@ -1,7 +1,11 @@
 package edu.westga.cs1302.project3.viewmodel;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import edu.westga.cs1302.project3.model.Task;
 import edu.westga.cs1302.project3.model.TaskManager;
+import edu.westga.cs1302.project3.model.TaskManagerPersistenceManager;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -35,6 +39,19 @@ public class ViewModel {
 	 */
 	public ListProperty<Task> getTasks() {
 		return this.listOfTask;
+	}
+
+	/**
+	 * Reads from the specified dataFile
+	 * 
+	 * @param dataFile Specified file the user wants to use
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	public void loadTaskManagerData(String dataFile) throws FileNotFoundException, IOException {
+		this.manager = TaskManagerPersistenceManager.loadTaskManagerData(dataFile);
+		this.listOfTask.set(FXCollections.observableArrayList(this.manager.getTask()));
+
 	}
 
 }

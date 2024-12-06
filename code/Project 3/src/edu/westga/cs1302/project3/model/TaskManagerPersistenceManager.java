@@ -70,6 +70,9 @@ public class TaskManagerPersistenceManager {
 		} catch (IllegalArgumentException error) {
 			throw new IllegalArgumentException("Unable to create task bad title/description.");
 		}
+		if (manager.getTask().isEmpty()) {
+			throw new IllegalArgumentException("The selected file is not in the appropriate format.");
+		}
 		return manager;
 	}
 
