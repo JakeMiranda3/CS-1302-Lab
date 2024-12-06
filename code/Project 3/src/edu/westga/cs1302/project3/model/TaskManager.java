@@ -1,6 +1,8 @@
 package edu.westga.cs1302.project3.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Manages a set of Tasks
@@ -10,12 +12,24 @@ import java.util.ArrayList;
  */
 public class TaskManager {
 	private ArrayList<Task> tasks;
+	private Map<String, Task> taskLookUp;
 
 	/**
 	 * Creates a new empty TaskManager with list of tasks.
 	 */
 	public TaskManager() {
 		this.tasks = new ArrayList<Task>();
+		this.taskLookUp = new HashMap<>();
+	}
+
+	/**
+	 * Stores the Task title, and Task with that Title as the key
+	 * 
+	 * @param title Title of the task
+	 * @param task  Task object
+	 */
+	public void addTaskToMap(String title, Task task) {
+		this.taskLookUp.put(title, task);
 	}
 
 	/**
@@ -46,7 +60,10 @@ public class TaskManager {
 		if (task == null) {
 			throw new IllegalArgumentException("Task cannot be null.");
 		}
-		this.tasks.add(task);
+		if (!this.taskLookUp.containsKey(task.getTitle())) {
+			this.tasks.add(task);
+			this.addTaskToMap(task.getTitle(), task);
+		}
 
 	}
 
@@ -61,6 +78,7 @@ public class TaskManager {
 			throw new IllegalArgumentException("Task cannot be null.");
 		}
 		this.tasks.remove(task);
+		this.taskLookUp.remove(task.getTitle());
 
 	}
 

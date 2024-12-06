@@ -14,7 +14,7 @@ import edu.westga.cs1302.project3.model.TaskManagerPersistenceManager;
 
 class TestLoadTaskManagerData {
 
-	private static final String DATA_FILE = "tasks.txt";
+	private static final String DATA_FILE = "data.txt";
 
 	@BeforeEach
 	public void setUp() throws IOException {

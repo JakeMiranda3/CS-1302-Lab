@@ -46,7 +46,7 @@ public class MainWindow {
 	void initialize() {
 		this.vm = new ViewModel();
 		this.listOfTask.setItems(this.vm.getTasks());
-		
+
 		this.vm.getSelectedTask().bind(this.listOfTask.getSelectionModel().selectedItemProperty());
 		this.loadTaskFile();
 		this.saveTaskFile();

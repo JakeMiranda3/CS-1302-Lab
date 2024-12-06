@@ -47,4 +47,14 @@ class TestAddTask {
 				"checking the description of the second task in the task manager");
 	}
 
+	@Test
+	void testAddSameTwoTaskTitles() {
+		TaskManager manager = new TaskManager();
+		Task task1 = new Task("Title", "Description");
+		manager.addTask(task1);
+		Task task2 = new Task("Title", "Description 2");
+		manager.addTask(task2);
+		assertEquals(1, manager.getSize(), "checking the number of tasks in the task manager");
+	}
+
 }
